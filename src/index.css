@@ -1,13 +1,234 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+p{
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.font16{
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+
+  font-family: 'Roboto', sans-serif;
+
+  color: black;
+}
+
+.font18{
+  font-size: 18px;
+  font-weight: 400;
+  text-decoration: none;
+
+  font-family: 'Roboto', sans-serif;
+
+  color: black;
+}
+
+.font24{
+  font-size: 24px;
+  font-weight: 400;
+  text-decoration: none;
+
+  font-family: 'Roboto', sans-serif;
+
+  color: black;
+}
+
+.font32{
+  font-size: 32px;
+  font-weight: 400;
+  text-decoration: none;
+
+  font-family: 'Roboto', sans-serif;
+
+  color: black;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+/* - - - - - - Body - - - - - - */
+
+body{
+  margin: 0;
+}
+
+.body{
+  background: linear-gradient(90deg, white, lightblue);
+  width: 100%;
+  height: 100vh;
+}
+
+/* - - - - - - Header - - - - - -  */
+
+header{
+  display: flex;
+  justify-content: space-around;
+
+  width: 100%;
+  height: 50px;
+
+  background: rgb(255, 255, 255);
+  border-bottom: 1px solid lightblue;
+
+  text-align: left;
+  align-items: center;
+}
+
+.logo{
+  width: 35px;
+  height: 35px;
+}
+
+/* - - - - - - Main - - - - - -  */
+
+.home-page{
+  margin: 100px 0;
+}
+
+.month-calendar {
+  font-family: sans-serif;
+  border: 1px solid rgb(204, 204, 204);
+  padding: 15px;
+  border-radius: 8px;
+  max-width: 350px;
+  margin: 20px 0;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 10%);
+}
+
+.month-calendar h2 {
+  text-align: center;
+
+  margin-top: 0;
+  margin-bottom: 15px;
+  
+  color: #333;
+}
+
+.calendar-grid {
+  display: grid;
+
+  grid-template-columns: repeat(7, 1fr);
+
+  gap: 8px;
+
+  text-align: center;
+}
+
+.calendar-day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border: 1px solid #eee;
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+
+  font-weight: 500;
+
+  color: #555;
+}
+
+.calendar-day:hover {
+  background-color: #f0f0f0;
+
+  border-color: #ddd;
+}
+
+/* - - - - - - Стиль для текущего дня - - - - - - */
+
+.calendar-day.today {
+  background-color: #007bff;
+  color: white;
+
+  border-color: #007bff;
+
+  font-weight: bold;
+}
+
+.month-navigation{
+  display: flex;
+
+  justify-content: center;
+
+  margin: 10px 0;
+
+  align-items: center;
+  column-gap: 10px;
+}
+
+.navigation-btn{
+  border: 1px solid lightblue;
+  border-radius: 10px;
+
+  background: none;
+
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.navigation-btn:hover{
+  border: 1px solid #007bff;
+}
+
+/* - - - - - - LoginContainer - - - - - - */
+
+.container_login{
+  display: flex;
+  flex-direction: column;
+
+  row-gap: 50px;
+
+  margin: 150px auto;
+  padding: 25px 25px;
+
+  width: 400px;
+
+  background-color: white;
+  border: 1px solid lightblue;
+  border-radius: 10px;
+}
+
+.container_login_block{
+  display: flex;
+  flex-direction: column;
+
+  row-gap: 10px;
+
+  width: 100%;
+}
+
+.login_block_input{
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 5px 5px;
+}
+
+.login_block_button{
+  padding: 5px 0;
+
+  background-color: #FFFFFF;
+
+  border: 1px solid lightgray;
+  border-radius: 10px;
+
+  color: grey;
+
+  cursor: pointer;
+}
+
+/* - - - - - DayRoomsList_Table - - - - - */
+
+.DayRoomsList_Table{
+  display: grid;
 }
