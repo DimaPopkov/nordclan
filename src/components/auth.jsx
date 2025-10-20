@@ -14,10 +14,9 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ username, setUsername }}>
-      {children}
+      { children }
     </AuthContext.Provider>
   );
 };
 
-// 3. Создаем хук для удобного доступа
 export const useAuth = () => useContext(AuthContext);
