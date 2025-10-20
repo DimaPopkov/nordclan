@@ -47,8 +47,6 @@ function RouteChangeListener({ children }) {
       const viewportHeight = window.innerHeight;
       const bodyHeight = bodyElement.offsetHeight;
 
-      console.log(bodyHeight, viewportHeight);
-
       if (bodyHeight < viewportHeight) {
         bodyElement.style.minHeight = '100dvh';
       } else if (bodyHeight >= viewportHeight){}

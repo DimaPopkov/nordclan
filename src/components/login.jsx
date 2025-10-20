@@ -43,7 +43,7 @@ export function GetUsers() {
 }
 
 export function LoginUser() {
-    const { setUsername } = useAuth();
+    const { setUsername, setId } = useAuth();
 
     const navigate = useNavigate();
 
@@ -98,8 +98,9 @@ export function LoginUser() {
         })
         .then(data => {
             console.log("Login successful:", data);
-            console.log(data.username);
-            setUsername(data.username); // Сохраняем результат логина
+            console.log(data.username, data.id);
+            setUsername(data.username);
+            setId(data.id);
 
             navigate("/");
         })
