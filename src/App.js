@@ -85,7 +85,7 @@ function App() {
         <header>
           <NavLink to="/" className="btn_logo font24" style={{ paddingLeft:'50px' }}> MeetRoom </NavLink>
           <NavLink to="/login" style={{ display: 'flex', columnGap:"10px", cursor:"pointer", textDecoration:"none" }}>
-            <p className='font18' style={{ alignContent:"center" }}> { username } </p>
+            <p className='font18' style={{ alignContent:"center" }}> { username !== null ? username : "Войти" } </p>
             <img src={logo} className='logo'/>
           </NavLink>
         </header>

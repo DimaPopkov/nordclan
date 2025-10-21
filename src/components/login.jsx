@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAuth } from './auth';
 
-const REST_API_URL = "http://localhost:8080/";
+const REST_API_URL = "http://26.99.193.114:8080/";
 
 export function GetUsers() {
     const [users, setUsers] = useState([]);

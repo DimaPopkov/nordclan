@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, useParams, Route, Routes, NavLink, useLocation } from 'react-router-dom';
 
 
-const REST_API_URL = "http://localhost:8080/";
+const REST_API_URL = "http://26.99.193.114:8080/";
 
 export async function getAllRooms(){
     try {
