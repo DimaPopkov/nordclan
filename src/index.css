@@ -248,8 +248,7 @@ header{
   display: flex;
   flex-direction: column;
 
-  margin: 50px auto;
-  padding: 5px 30px;
+  margin: 20px auto 0 auto;
 
   width: 80%;
   min-width: 500px;
@@ -260,17 +259,23 @@ header{
   border: 1px solid black;
   border-radius: 10px;
 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 10%);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 10%);
   background-color: white;
 }
 
-.room-selector-container {
-  background-color: #fff;
-  padding: 20px;
+.addTicketButton{
+  width: 320px;
+  height: 45px;
+
+  margin: 5px auto 10px auto;
+
+  background: linear-gradient(180deg, white, lightblue);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 20%);
+
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  position: relative;
+  border: 0 solid rgba(255, 255, 255, 100%);
+
+  cursor: pointer;
 }
 
 .room-menu {
@@ -280,8 +285,8 @@ header{
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 
-  border-radius: 0 0 8px 8px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 15%);
 
   background-color: rgb(255, 255, 255); 
 

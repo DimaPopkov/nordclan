@@ -146,12 +146,9 @@ export function DayInfo() {
         }
     }
 
-    // let rows = ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00",
-    //             "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00", "24:00"];
-
     let rows_date = Array.from({ length: tableWidth });
 
-    console.log(rows_date);
+    // console.log(rows_date);
 
     // select row -> select column -> getting all tickets -> if ticket.id == column_id -> checking start_time
     for(let column_id = 0; column_id < rows_date.length; column_id++)
@@ -171,12 +168,12 @@ export function DayInfo() {
 
                         let final_ticket_end_time = ticket_end_time[3].split(':');
 
-                        console.log("\n\n final_ticket_start_time: " + parseInt(final_ticket_start_time[0], 10), parseInt(final_ticket_start_time[1], 10) + 
-                                    "\n\n final_ticket_end_time: " + parseInt(final_ticket_end_time[0], 10), parseInt(final_ticket_end_time[1], 10) + "\n");
+                        // console.log("\n\n final_ticket_start_time: " + parseInt(final_ticket_start_time[0], 10), parseInt(final_ticket_start_time[1], 10) + 
+                        //             "\n\n final_ticket_end_time: " + parseInt(final_ticket_end_time[0], 10), parseInt(final_ticket_end_time[1], 10) + "\n");
 
                         let d_h = parseInt(rows[d].split(':')[0]);
                         let d_m = parseInt(rows[d].split(':')[1]);
-                        console.log(d_h, d_m);
+                        // console.log(d_h, d_m);
                         if(((parseInt(final_ticket_start_time[0], 10) <= d_h && parseInt(final_ticket_start_time[1], 10) <= d_m) || (parseInt(final_ticket_start_time[0], 10) < d_h && parseInt(final_ticket_start_time[1], 10) > d_m)) &&    
                            ((parseInt(final_ticket_end_time[0], 10)   >=  d_h && parseInt(final_ticket_end_time[1], 10)  >= d_m) || (parseInt(final_ticket_end_time[0], 10)   > d_h && parseInt(final_ticket_end_time[1], 10)   < d_m)))
                         {
@@ -188,15 +185,15 @@ export function DayInfo() {
         }
     }
 
-    console.log(rows_date);
+    // console.log(rows_date);
 
     return (
         <div style={{ textAlign: "center", width: "100%", paddingTop: "50px" }}>
             <p className="font24"> {fullDateString} </p>
 
-            <div style={{ display:"flex", justifyContent:"center", columnGap:"10px", marginTop:"25px" }}>
-                <table className="time-table" style={{ margin: "0 0", borderCollapse: "collapse", width:"150px" }}>
-                    <thead style={{ height: "59px"}}>
+            <div style={{ display:"flex", justifyContent:"center", marginTop:"25px", columnGap:"10px" }}>
+                <table className="time-table" style={{ margin: "0 0", borderCollapse: "collapse", width:"100px" }}>
+                    <thead style={{ height: "52px"}}>
                         <tr>
                             <th>
                                 <NavLink to="/add_ticket" className="font18" style={{ display: "block", width: "100%", height: "100%", padding: "10px 0", border: "1px solid black", borderRadius: "10px" }}>
@@ -208,7 +205,7 @@ export function DayInfo() {
                     <tbody>
                         {
                             rows.map((item, d) => (
-                                <tr key={d} className={`font18 ${d}`} style={{ width:"200px", height: "50px" }}>
+                                <tr key={d} className={`font18 ${d}`} style={{ width:"100%", height: "50px" }}>
                                     <td>{item}</td>
                                 </tr>
                             ))
@@ -218,10 +215,10 @@ export function DayInfo() {
 
                 <table className="rooms-table" style={{ margin: "0 0", borderCollapse: "collapse", width:"80%", maxWidth:"1150px", minWidth:"800px" }}>
                     <thead>
-                        <tr>
+                        <tr style={{ height:"68px" }}>
                             {
                                 columns.map((_, d) => (
-                                    <th key={d} className='font18' style={{ padding:"15px 0" }}>
+                                    <th key={d} className='font18' style={{ padding:"15px 0", borderLeft: d !== 0 ? ("1px solid rgba(0, 0, 0, 10%)") : null }}>
                                         { rooms[d] ? `${rooms[d].name}` : ""}
                                     </th>
                                 ))
@@ -231,11 +228,11 @@ export function DayInfo() {
                     <tbody>
                         {
                             rows.map((_, i) => (
-                                <tr key={i} style={{ height: "50px" }}>
+                                <tr key={i} style={{ height: "50px", borderTop: "1px solid rgba(0, 0, 0, 10%)" }}>
                                     { 
                                         columns.map((_, d) => (  
                                             rows_date[d][i] !== undefined ? (
-                                                <td key={d} className='font18' style={{ width:"200px", padding:"0 15px" }}>
+                                                <td key={d} className='font18' style={{ width:"200px", padding:"0 15px", borderLeft: d !== 0 ? "1px solid rgba(0, 0, 0, 10%)" : null }}>
                                                     <div style={{ borderLeft:"1px solid black", borderRight:"1px solid black", height:"50px", alignContent:"center", borderRadius:"10px",
                                                                 borderTop: rows_date[d][i - 1] !== rows_date[d][i] ? "1px solid black" : "0", borderTopLeftRadius: rows_date[d][i - 1] !== rows_date[d][i] ? "10px" : "0", borderTopRightRadius: rows_date[d][i - 1] !== rows_date[d][i] ? "10px" : "0",
                                                                 borderBottom: rows_date[d][i + 1] !== rows_date[d][i] ? "1px solid black" : "0", borderBottomLeftRadius: rows_date[d][i + 1] !== rows_date[d][i] ? "10px" : "0", borderBottomRightRadius: rows_date[d][i + 1] !== rows_date[d][i] ? "10px" : "0", }}>
@@ -275,7 +272,7 @@ export function DayInfo() {
                                                     </div>
                                                 </td>
                                             ) : (
-                                                <td key={d} className='font18' style={{ width:"200px", padding:"0 15px" }}>
+                                                <td key={d} className='font18' style={{ width:"200px", padding:"0 15px", borderLeft: d !== 0 ? "1px solid rgba(0, 0, 0, 10%)" : null }}>
                                                     <p></p>
                                                 </td>
                                             )

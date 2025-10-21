@@ -90,35 +90,48 @@ export function AddTicket(){
         const start_time = sliceAndBuildDate(selectedDateTimeStart);
         const end_time = sliceAndBuildDate(selectedDateTimeEnd);
 
-        const url = REST_API_URL + "tickets/add/?st_time=" + start_time + "&end_time=" + end_time + "&comment=" + textarea_text + "&room=" + selectedRoomId + "&user=" + id;
-        // console.log(start_time, end_time);
+        const variable_st_time = [selectedDateTimeStart.getDate(), selectedDateTimeStart.getMonth(), selectedDateTimeStart.getFullYear()];
+        const variable_end_time = [selectedDateTimeEnd.getDate(), selectedDateTimeEnd.getMonth(), selectedDateTimeEnd.getFullYear()];
 
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: "success"
-        })
-        .then(responce => {
-            if (!responce.ok) {
-                return responce.text().then(text => {
-                    throw new Error(`HTTP error! status: ${responce.status}, message: ${text}`);
-                });
-            }
-            return responce.json();
-        })
+        const variable_st_time_hour_min = [selectedDateTimeStart.getHours(), selectedDateTimeStart.getMinutes()];
+        const variable_end_time_hour_min = [selectedDateTimeEnd.getHours(), selectedDateTimeEnd.getMinutes()];
 
-        /* Нужно что-то вывести пользователю на экран */
-        navigate("/");
+        console.log(variable_st_time_hour_min, variable_end_time_hour_min);
+
+        if((variable_st_time[0] === variable_end_time[0]) && (variable_st_time[1] === variable_end_time[1]) && (variable_st_time[2] === variable_end_time[2]) && (((variable_st_time_hour_min[0] === variable_end_time_hour_min[0]) && (variable_st_time_hour_min[1] + 30 < variable_end_time_hour_min[1])) || (variable_st_time_hour_min[0] !== variable_end_time_hour_min[0])))
+        {
+            const url = REST_API_URL + "tickets/add/?st_time=" + start_time + "&end_time=" + end_time + "&comment=" + textarea_text + "&room=" + selectedRoomId + "&user=" + id;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: "success"
+            })
+            .then(responce => {
+                if (!responce.ok) {
+                    return responce.text().then(text => {
+                        throw new Error(`HTTP error! status: ${responce.status}, message: ${text}`);
+                    });
+                }
+                return responce.json();
+            })
+
+            navigate("/");
+        } else if ((variable_st_time_hour_min[0] === variable_end_time_hour_min[0]) && (variable_st_time_hour_min[1] + 30 > variable_end_time_hour_min[1])) {
+            alert(new Error("Минимальное время бронирования - 30 минут")); 
+        } else if ((variable_st_time[0] !== variable_end_time[0]) || (variable_st_time[1] !== variable_end_time[1]) || (variable_st_time[2] !== variable_end_time[2])) {
+            alert(new Error("Максимальное время бронирования - 24 часа")); 
+        }       
     }
 
     return(
         <div className="addTicket_container"> 
         {        
             username != null ? (
-                <div style={{ display:"flex", flexDirection:"column" }}>
+                <div style={{ display:"flex", flexDirection:"column", padding: "5px 30px" }}>
                     <div className='font24' style={{ width:"100%", marginTop:"0.5em" }}>
                         <h3 style={{ display:"flex", alignItems:"center", columnGap:"10px" }}>
                             Пользователь: 
@@ -155,12 +168,12 @@ export function AddTicket(){
                                             <DatePicker
                                                 selected={ selectedDateTimeStart }
                                                 onChange={ handleDateChangeStart }
-                                                showTimeSelect // Показывает выбор времени
-                                                dateFormat="Pp" // Формат даты и времени (например, 11/25/2023, 11:00 AM)
-                                                timeFormat="HH:mm" // Формат времени (24-часовой)
-                                                timeIntervals={15} // Интервалы времени (например, 15 минут)
+                                                showTimeSelect
+                                                dateFormat="Pp"
+                                                timeFormat="HH:mm"
+                                                timeIntervals={ 30 }
                                                 placeholderText="Выберите дату и время"
-                                                isClearable // Добавляет кнопку очистки
+                                                isClearable={ null }
                                                 className='font18'
                                             />
                                         <br/>
@@ -168,24 +181,24 @@ export function AddTicket(){
                                             <DatePicker
                                                 selected={ selectedDateTimeEnd }
                                                 onChange={ handleDateChangeEnd }
-                                                showTimeSelect // Показывает выбор времени
-                                                dateFormat="Pp" // Формат даты и времени (например, 11/25/2023, 11:00 AM)
-                                                timeFormat="HH:mm" // Формат времени (24-часовой)
-                                                timeIntervals={15} // Интервалы времени (например, 15 минут)
+                                                showTimeSelect
+                                                dateFormat="Pp"
+                                                timeFormat="HH:mm"
+                                                timeIntervals={ 30 }
                                                 placeholderText="Выберите дату и время"
-                                                isClearable // Добавляет кнопку очистки
+                                                isClearable={ null }
                                                 className='font18'
                                             />
                                     </div>
                                     <div style={{  marginTop:"25px", display:"flex", flexDirection:"column" }}>
                                         <h4> Дополнительный комментарий </h4>
-                                        <textarea style={{ width:"300px", height:"200px", maxWidth:"790px", minWidth:"400px" }} id="textarea"></textarea>
+                                        <textarea style={{ width:"300px", height:"200px", maxWidth:"735px", minWidth:"415px" }} id="textarea"></textarea>
                                     </div>
                                 </div>
                             </div>
                         </h3>  
                     </div>                            
-                    <button onClick={ createTicket } style={{ marginTop: '20px' }} className='font18'>
+                    <button onClick={ createTicket } className='font18 addTicketButton'>
                         Забронировать переговорку
                     </button>
                 </div>
